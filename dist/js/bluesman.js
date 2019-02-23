@@ -28,6 +28,8 @@ function () {
   _createClass(GuitarBuffer, [{
     key: "loadSound",
     value: function loadSound(url, index) {
+      var _this = this;
+
       var request = new XMLHttpRequest();
       request.open('get', url, true);
       request.responseType = 'arraybuffer';
@@ -41,6 +43,8 @@ function () {
 
           if (index === thisBuffer.urls.length - 1) {
             GuitarBuffer.finishLoading();
+
+            _this.context.resume();
           }
         });
       };
@@ -50,10 +54,10 @@ function () {
   }, {
     key: "getBuffer",
     value: function getBuffer() {
-      var _this = this;
+      var _this2 = this;
 
       this.urls.forEach(function (url, index) {
-        _this.loadSound(url, index);
+        _this2.loadSound(url, index);
       });
     }
   }, {
@@ -161,7 +165,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var context = new (window.AudioContext || window.webkitAudioContext)();
 var buffer = new _buffer.default(context, _sounds.default);
-buffer.getBuffer();
 var guitar = null;
 var preset = 0;
 
@@ -175,6 +178,11 @@ function stopGuitar() {
   guitar.stop();
 }
 
+var startBtn = document.querySelector('.start-btn');
+startBtn.addEventListener('click', function () {
+  startBtn.style.display = 'none';
+  buffer.getBuffer();
+});
 var buttons = document.querySelectorAll('.notes .note');
 buttons.forEach(function (button) {
   button.addEventListener('mouseenter', playGuitar.bind(button));

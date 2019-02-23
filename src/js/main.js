@@ -4,7 +4,6 @@ import sounds from './sounds';
 
 const context = new (window.AudioContext || window.webkitAudioContext)();
 const buffer = new GuitarBuffer(context, sounds);
-buffer.getBuffer();
 
 let guitar = null;
 let preset = 0;
@@ -18,6 +17,12 @@ function playGuitar() {
 function stopGuitar() {
     guitar.stop();
 }
+
+const startBtn = document.querySelector('.start-btn');
+startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';
+    buffer.getBuffer();
+});
 
 const buttons = document.querySelectorAll('.notes .note');
 buttons.forEach((button) => {

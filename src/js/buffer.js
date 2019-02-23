@@ -20,6 +20,7 @@ class GuitarBuffer {
                     thisBuffer.updateProgress(thisBuffer.urls.length);
                     if (index === thisBuffer.urls.length - 1) {
                         GuitarBuffer.finishLoading();
+                        this.context.resume();
                     }
                 });
         };

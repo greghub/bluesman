@@ -56,8 +56,9 @@ nav {
 
 .loading {
   display: flex;
-  justify-content: center;
+  align-items: center;
   margin-top: 24px;
+  flex-direction: column;
   .progress {
     transition: width 0.3s linear;
   }
@@ -174,6 +175,23 @@ nav {
       width: 100%;
       margin-top: 2px;
     }
+  }
+}
+
+.start-btn {
+  background: #401f52;
+  color: #f7d9a8;
+  font-size: 22px;
+  padding: 16px 32px;
+  border-radius: 4px;
+  margin-top: 48px;
+  box-shadow: 0 0 4px 3px #f7d9a8;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #5b1953;
   }
 }
 

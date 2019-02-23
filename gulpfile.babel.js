@@ -30,11 +30,11 @@ const styles = () => {
 };
 
 const scripts = () => browserify({
-    entries: './src/js/index.js'
-    // standalone: 'LibraryName'
+    entries: './src/js/index.js',
+    standalone: 'Bluesman'
 }).transform(babelify, { presets: ['@babel/preset-env'] })
     .bundle()
-    .pipe(source('app.js')) // library-name.js
+    .pipe(source('bluesman.js')) // library-name.js
     .pipe(gulp.dest('dist/js'))
     .pipe(streamify(uglify()))
     .pipe(rename({ suffix: '.min' }))

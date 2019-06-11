@@ -1,7 +1,6 @@
 html,
 body {
-  height: 100%;
-  min-width: 726px; }
+  height: 100vh; }
 
 nav {
   background-color: #221C44;
@@ -16,6 +15,9 @@ nav {
   line-height: 17px;
   position: relative;
   z-index: 2; }
+  @media screen and (max-width: 495px) {
+    nav {
+      display: none; } }
   nav .rewind {
     margin-left: 28px;
     height: 16px;
@@ -49,9 +51,15 @@ nav {
   margin-top: 24px;
   flex-direction: column;
   position: relative;
-  z-index: 1; }
+  z-index: 20; }
   .loading .progress {
     transition: width 0.3s linear; }
+  @media screen and (max-width: 768px) {
+    .loading svg {
+      width: 300px; } }
+  @media screen and (max-width: 495px) {
+    .loading {
+      display: none; } }
 
 .notes {
   display: flex;
@@ -60,10 +68,16 @@ nav {
   transition: opacity 1s ease;
   justify-content: center;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   overflow: hidden; }
+  @media screen and (max-width: 495px) {
+    .notes {
+      display: none; } }
   .notes .note {
     height: 132px; }
+    @media screen and (max-width: 768px) {
+      .notes .note {
+        height: 96px; } }
     .notes .note > div {
       height: 100%;
       width: 32px;
@@ -78,11 +92,19 @@ nav {
       box-sizing: border-box;
       padding: 5px 0;
       box-shadow: 0 7px 8px rgba(0, 0, 0, 0.16); }
+      @media screen and (max-width: 768px) {
+        .notes .note > div {
+          width: 24px;
+          border-radius: 12px;
+          font-size: 16px; } }
     .notes .note:hover div {
       background-color: #FF6545;
       color: #fff; }
     .notes .note.key {
       height: 172px; }
+      @media screen and (max-width: 768px) {
+        .notes .note.key {
+          height: 132px; } }
       .notes .note.key > div {
         background-color: #ECDCCA; }
       .notes .note.key:hover > div {
@@ -90,17 +112,31 @@ nav {
         color: #fff; }
     .notes .note:not(:first-child) > div {
       margin-left: 8px; }
+      @media screen and (max-width: 768px) {
+        .notes .note:not(:first-child) > div {
+          margin-left: 4px; } }
     .notes .note:not(:last-child) > div {
       margin-right: 8px; }
+      @media screen and (max-width: 768px) {
+        .notes .note:not(:last-child) > div {
+          margin-right: 4px; } }
     .notes .note span {
       font-size: 0.7em; }
+
+.guitar-holder {
+  max-width: 100%;
+  overflow: hidden; }
 
 .guitar {
   width: 96%;
   min-width: 772px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  right: 0; }
+  right: 0;
+  z-index: 1; }
+  @media screen and (max-width: 495px) {
+    .guitar {
+      display: none; } }
   .guitar.visible {
     transition: opacity 0.5s ease; }
   .guitar img {
@@ -158,6 +194,28 @@ nav {
   cursor: pointer; }
   .start-btn:hover {
     background-color: #5b1953; }
+  @media screen and (max-width: 768px) {
+    .start-btn {
+      font-size: 18px;
+      padding: 8px 24px;
+      margin-top: 24px; } }
+
+.no-audio {
+  font-size: 20px;
+  color: #f7d9a8;
+  display: none;
+  margin-top: 64px; }
+
+.small-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; }
+  .small-screen > div {
+    width: 120px; }
+  @media screen and (min-width: 496px) {
+    .small-screen {
+      display: none; } }
 
 body {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/bluesman_background.svg) center, linear-gradient(-180deg, #242150 5%, #572250 91%);

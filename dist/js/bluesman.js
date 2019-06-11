@@ -163,6 +163,11 @@ var _sounds = _interopRequireDefault(require("./sounds"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+if (!window.AudioContext && !window.webkitAudioContext) {
+  document.querySelector('.start-btn').style.display = 'none';
+  document.querySelector('.no-audio').style.display = 'block';
+}
+
 var context = new (window.AudioContext || window.webkitAudioContext)();
 var buffer = new _buffer.default(context, _sounds.default);
 var guitar = null;

@@ -2,8 +2,7 @@
 
 html,
 body {
-  height: 100%;
-  min-width: 726px;
+  height: 100vh;
 }
 
 nav {
@@ -19,16 +18,23 @@ nav {
   line-height: 17px;
   position: relative;
   z-index: 2;
+
+  @media screen and (max-width: 495px) {
+    display: none;
+  }
+
   .rewind {
     margin-left: 28px;
     height: 16px;
     cursor: pointer;
   }
+
   .play {
     margin-left: 24px;
     height: 24px;
     cursor: pointer;
   }
+
   .play-icon,
   .rewind-icon,
   .pause-icon {
@@ -37,17 +43,21 @@ nav {
       fill: #566574;
     }
   }
+
   .pause-icon {
     display: none;
   }
+
   .controls {
     display: flex;
     align-items: center;
   }
+
   .social a {
     font-size: 24px;
     color: #A8B5C2;
     margin-left: 18px;
+
     &:hover {
       color: #566574;
     }
@@ -59,11 +69,22 @@ nav {
   align-items: center;
   margin-top: 24px;
   flex-direction: column;
+  position: relative;
+  z-index: 20;
+
   .progress {
     transition: width 0.3s linear;
   }
-  position: relative;
-  z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    svg {
+      width: 300px;
+    }
+  }
+
+  @media screen and (max-width: 495px) {
+    display: none;
+  }
 }
 
 .notes {
@@ -73,9 +94,20 @@ nav {
   transition: opacity 1s ease;
   justify-content: center;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   overflow: hidden;
+
+  @media screen and (max-width: 495px) {
+    display: none;
+  }
+
   .note {
+    height: 132px;
+
+    @media screen and (max-width: 768px) {
+      height: 96px;
+    }
+
     & > div {
       height: 100%;
       width: 32px;
@@ -90,48 +122,86 @@ nav {
       box-sizing: border-box;
       padding: 5px 0;
       box-shadow: 0 7px 8px rgba(0, 0, 0, .16);
+
+      @media screen and (max-width: 768px) {
+        width: 24px;
+        border-radius: 12px;
+        font-size: 16px;
+      }
     }
+
     &:hover div {
       background-color: #FF6545;
       color: #fff;
     }
-    height: 132px;
-    &.key{
+
+    &.key {
       height: 172px;
+
+      @media screen and (max-width: 768px) {
+        height: 132px;
+      }
+
       & > div {
         background-color: #ECDCCA;
       }
+
       &:hover > div {
         background-color: #FF6545;
         color: #fff;
       }
     }
+
     &:not(:first-child) > div {
       margin-left: 8px;
+
+      @media screen and (max-width: 768px) {
+        margin-left: 4px;
+      }
     }
+
     &:not(:last-child) > div {
       margin-right: 8px;
+
+      @media screen and (max-width: 768px) {
+        margin-right: 4px;
+      }
     }
+
     span {
       font-size: 0.7em;
     }
   }
 }
 
+
+.guitar-holder {
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .guitar {
   width: 96%;
   min-width: 772px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 1;
+
+  @media screen and (max-width: 495px) {
+    display: none;
+  }
+
   &.visible {
     transition: opacity 0.5s ease;
   }
+
   img {
     width: 100%;
     display: block;
     pointer-events: none;
   }
+
   .circle {
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/switch.png) no-repeat;
     background-size: 100%;
@@ -144,15 +214,19 @@ nav {
     right: 44.5%;
     top: 33.5%;
     cursor: pointer;
+
     &.rock {
       background-position: 0 100%;
+
       &:before {
         color: #FFF;
       }
+
       &:after {
         color: #C17CA4;
       }
     }
+
     &:before, &:after {
       font-weight: 700;
       font-size: 12px;
@@ -162,11 +236,13 @@ nav {
       position: relative;
       transition: color 0.3s ease;
     }
+
     &:before {
       content: "ROCK";
       top: -14px;
       color: #C17CA4;
     }
+
     &:after {
       content: "BLUES";
       top: 100%;
@@ -193,6 +269,34 @@ nav {
   &:hover {
     background-color: #5b1953;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+    padding: 8px 24px;
+    margin-top: 24px;
+  }
+}
+
+.no-audio {
+  font-size: 20px;
+  color: #f7d9a8;
+  display: none;
+  margin-top: 64px;
+}
+
+.small-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  & > div {
+    width: 120px;
+  }
+
+  @media screen and (min-width: 496px) {
+    display: none;
+  }
 }
 
 body {
@@ -203,6 +307,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: 'Roboto', sans-serif;
+
   & * {
     user-select: none;
   }

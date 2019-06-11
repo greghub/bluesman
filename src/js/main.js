@@ -2,7 +2,13 @@ import GuitarBuffer from './buffer';
 import Guitar from './guitar';
 import sounds from './sounds';
 
+if (!window.AudioContext && !window.webkitAudioContext) {
+    document.querySelector('.start-btn').style.display = 'none';
+    document.querySelector('.no-audio').style.display = 'block';
+}
+
 const context = new (window.AudioContext || window.webkitAudioContext)();
+
 const buffer = new GuitarBuffer(context, sounds);
 
 let guitar = null;
